@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#9c66d7" name="theme-color"/>
+<meta content="Rizqi O AI Image Generator - Create stunning AI-generated images" name="description"/>
+<title>Rizqi O AI - Image Generator</title>
+<link href="/manifest.json" rel="manifest"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<style>
+        /* Variabel Tema Light */
+        :root {
+            --primary-color: rgba(156, 102, 215, 0.8);
+            --secondary-color: rgba(255, 255, 255, 0.1);
+            --text-color: #333333;
+            --text-light: rgba(51, 51, 51, 0.7);
+            --success-color: rgba(72, 187, 120, 0.8);
+            --error-color: rgba(245, 101, 101, 0.8);
+            --warning-color: rgba(237, 137, 54, 0.8);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --glass-backdrop: blur(16px) saturate(180%);
+            
+            /* Neumorphism Light */
+            --neumorph-bg: #e0e5ec;
+            --neumorph-shadow-dark: #a3b1c6;
+            --neumorph-shadow-light: #ffffff;
+            --neumorph-radius: 15px;
+            --neumorph-primary: #9c66d7;
+            
+            /* Background */
+            --body-bg: #f5f5f5;
+            --card-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Variabel Tema Dark */
+        [data-theme="dark"] {
+            --text-color: #f0f0f0;
+            --text-light: rgba(240, 240, 240, 0.7);
+            
+            /* Neumorphism Dark */
+            --neumorph-bg: #2a2a3a;
+            --neumorph-shadow-dark: #1f1f2a;
+            --neumorph-shadow-light: #35354a;
+            
+            /* Background */
+            --body-bg: #121212;
+            --card-bg: rgba(30, 30, 40, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        /* Theme Switch Styles */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+
+        .theme-switch input {
+            display: none;
+        }
+
+        .slider {
+            background-color: var(--neumorph-bg);
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            box-shadow: 
+                3px 3px 6px var(--neumorph-shadow-dark),
+                -3px -3px 6px var(--neumorph-shadow-light);
+        }
+
+        .slider:before {
+            background-color: var(--neumorph-bg);
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+            box-shadow: 
+                2px 2px 5px var(--neumorph-shadow-dark),
+                -2px -2px 5px var(--neumorph-shadow-light);
+        }
+
+        input:checked + .slider {
+            background-color: var(--neumorph-primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .theme-icon {
+            margin: 0 10px;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-shadow: 0 0 10px var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        .tagline {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        /* Neumorphism Base Styles */
+        .neumorph {
+            background: var(--card-bg);
+            border-radius: var(--neumorph-radius);
+            box-shadow: 
+                8px 8px 15px var(--neumorph-shadow-dark),
+                -8px -8px 15px var(--neumorph-shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .neumorph-inset {
+            box-shadow: 
+                inset 5px 5px 10px var(--neumorph-shadow-dark),
+                inset -5px -5px 10px var(--neumorph-shadow-light);
+        }
+
+        .neumorph-btn {
+            background: var(--neumorph-bg);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            box-shadow: 
+                5px 5px 10px var(--neumorph-shadow-dark),
+                -5px -5px 10px var(--neumorph-shadow-light);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .neumorph-btn:active {
+            box-shadow: 
+                inset 3px 3px 5px var(--neumorph-shadow-dark),
+                inset -3px -3px 5px var(--neumorph-shadow-light);
+        }
+
+        .neumorph-btn.primary {
+            color: var(--neumorph-primary);
+        }
+
+        .neumorph-input {
+            background: var(--neumorph-bg);
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 
+                inset 5px 5px 10px var(--neumorph-shadow-dark),
+                inset -5px -5px 10px var(--neumorph-shadow-light);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .neumorph-input:focus {
+            outline: none;
+            box-shadow: 
+                inset 2px 2px 5px var(--neumorph-shadow-dark),
+                inset -2px -2px 5px var(--neumorph-shadow-light);
+        }
+
+        .neumorph-select {
+            background: var(--neumorph-bg);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            color: var(--text-color);
+            box-shadow: 
+                5px 5px 10px var(--neumorph-shadow-dark),
+                -5px -5px 10px var(--neumorph-shadow-light);
+            transition: all 0.3s ease;
+            width: 100%;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .neumorph-select:focus {
+            outline: none;
+            box-shadow: 
+                inset 2px 2px 5px var(--neumorph-shadow-dark),
+                inset -2px -2px 5px var(--neumorph-shadow-light);
+        }
+
+        .select-container {
+            position: relative;
+        }
+
+        .select-container::after {
+            content: "▼";
+            font-size: 0.8rem;
+            color: var(--text-light);
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .control-panel, .preview-panel {
+            flex: 1;
+            min-width: 300px;
+            background: var(--card-bg);
+            border-radius: var(--neumorph-radius);
+            padding: 25px;
+            box-shadow: 
+                8px 8px 15px var(--neumorph-shadow-dark),
+                -8px -8px 15px var(--neumorph-shadow-light);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        input::placeholder, textarea::placeholder, select::placeholder {
+            color: var(--text-light);
+        }
+
+        /* Button Groups */
+        .clear-prompt-btn, .translate-btn {
+            width: 100%;
+            margin-top: 5px;
+            background: var(--neumorph-bg);
+            color: var(--text-light);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 
+                3px 3px 6px var(--neumorph-shadow-dark),
+                -3px -3px 6px var(--neumorph-shadow-light);
+        }
+
+        .clear-prompt-btn:hover, .translate-btn:hover {
+            background: var(--neumorph-bg);
+            color: var(--neumorph-primary);
+            box-shadow: 
+                2px 2px 4px var(--neumorph-shadow-dark),
+                -2px -2px 4px var(--neumorph-shadow-light);
+        }
+
+        .clear-prompt-btn:active, .translate-btn:active {
+            box-shadow: 
+                inset 2px 2px 4px var(--neumorph-shadow-dark),
+                inset -2px -2px 4px var(--neumorph-shadow-light);
+        }
+
+        /* Translate Container */
+        .translate-container {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        
+        .language-select {
+            flex: 1;
+            background: var(--neumorph-bg);
+            color: var(--text-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 
+                3px 3px 6px var(--neumorph-shadow-dark),
+                -3px -3px 6px var(--neumorph-shadow-light);
+        }
+
+        /* Image Preview */
+        .image-preview {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .placeholder {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            border-radius: 15px;
+            background: var(--neumorph-bg);
+            box-shadow: 
+                inset 5px 5px 10px var(--neumorph-shadow-dark),
+                inset -5px -5px 10px var(--neumorph-shadow-light);
+        }
+
+        .placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Settings Groups */
+        .settings-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .setting-item {
+            flex: 1;
+        }
+
+        .advanced-settings {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toggle-advanced {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Art Style Grid */
+        .art-style-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .art-style-option {
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            background: var(--neumorph-bg);
+            box-shadow: 
+                3px 3px 6px var(--neumorph-shadow-dark),
+                -3px -3px 6px var(--neumorph-shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .art-style-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                4px 4px 8px var(--neumorph-shadow-dark),
+                -4px -4px 8px var(--neumorph-shadow-light);
+        }
+
+        .art-style-option.selected {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 
+                inset 2px 2px 4px rgba(0,0,0,0.2),
+                inset -2px -2px 4px rgba(255,255,255,0.1);
+        }
+
+        .art-style-option i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-buttons .btn {
+            flex: 1;
+        }
+
+        .btn-generate {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-download {
+            background: var(--success-color);
+            margin-top: 10px;
+            display: none;
+        }
+
+        .btn-regenerate {
+            background: var(--warning-color);
+            margin-top: 10px;
+            display: none;
+        }
+
+        .btn-reset {
+            background: var(--error-color);
+            margin-top: 10px;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 500;
+            box-shadow: var(--glass-shadow);
+            z-index: 1000;
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: var(--glass-backdrop);
+            border: var(--glass-border);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background-color: var(--success-color);
+        }
+
+        .notification.error {
+            background-color: var(--error-color);
+        }
+
+        .notification.warning {
+            background-color: var(--warning-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Install button */
+        .install-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: var(--glass-backdrop);
+            border: var(--glass-border);
+        }
+
+        .install-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(156, 102, 215, 0.4);
+        }
+
+        .install-btn i {
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .art-style-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .notification {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                transform: translateY(200%);
+            }
+
+            .notification.show {
+                transform: translateY(0);
+            }
+
+            .logo-container {
+                flex-direction: column;
+            }
+
+            .install-btn {
+                position: static;
+                margin-top: 15px;
+                width: auto;
+            }
+
+            .theme-switch-wrapper {
+                position: static;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+        }
+    
+
+
+body {
+    background: url('logo-rizqi-o-1.png') center center no-repeat;
+    background-color: #000;
+    background-size: contain;
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enhanced Neumorphism Styling */
+.control-panel,
+.preview-panel {
+    background: var(--neumorph-bg) !important;
+    box-shadow: 
+        10px 10px 20px var(--neumorph-shadow-dark),
+        -10px -10px 20px var(--neumorph-shadow-light) !important;
+    border-radius: var(--neumorph-radius);
+    padding: 30px;
+}
+
+.neumorph-btn, .neumorph-input, .neumorph-select, .art-style-option, .language-select, .clear-prompt-btn, .translate-btn {
+    box-shadow: 
+        6px 6px 12px var(--neumorph-shadow-dark),
+        -6px -6px 12px var(--neumorph-shadow-light) !important;
+}
+
+.neumorph-btn:active,
+.clear-prompt-btn:active,
+.translate-btn:active {
+    box-shadow: 
+        inset 4px 4px 8px var(--neumorph-shadow-dark),
+        inset -4px -4px 8px var(--neumorph-shadow-light) !important;
+}
+
+.neumorph-input, .neumorph-select {
+    background: var(--neumorph-bg) !important;
+    color: var(--text-color) !important;
+}
+
+.section-title, label, .tagline, .logo {
+    text-shadow: 1px 1px 2px var(--neumorph-shadow-dark);
+}
+
+.art-style-option.selected {
+    background: var(--primary-color) !important;
+    color: #fff !important;
+    box-shadow: 
+        inset 4px 4px 8px rgba(0,0,0,0.2),
+        inset -4px -4px 8px rgba(255,255,255,0.1) !important;
+}
+
+
+/* Tombol dengan animasi halus */
+.neumorph-btn,
+.clear-prompt-btn,
+.translate-btn,
+#generate-btn,
+#download-btn,
+#regenerate-btn,
+#reset-btn,
+.install-btn {
+    transition: all 0.2s ease-in-out !important;
+    transform: translateY(0);
+}
+
+/* Saat hover - tombol terangkat */
+.neumorph-btn:hover,
+.clear-prompt-btn:hover,
+.translate-btn:hover,
+#generate-btn:hover,
+#download-btn:hover,
+#regenerate-btn:hover,
+#reset-btn:hover,
+.install-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        8px 8px 15px var(--neumorph-shadow-dark),
+        -8px -8px 15px var(--neumorph-shadow-light) !important;
+}
+
+/* Saat diklik - tombol ditekan */
+.neumorph-btn:active,
+.clear-prompt-btn:active,
+.translate-btn:active,
+#generate-btn:active,
+#download-btn:active,
+#regenerate-btn:active,
+#reset-btn:active,
+.install-btn:active {
+    transform: translateY(1px);
+    box-shadow: 
+        inset 3px 3px 6px var(--neumorph-shadow-dark),
+        inset -3px -3px 6px var(--neumorph-shadow-light) !important;
+}
+
+</style>
+<!-- Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CFEV3HSD63"></script>
+<script src="analytics.js"></script>
+</head>
+<body>
+<div class="container">
+<!-- Theme Switch -->
+<div class="theme-switch-wrapper">
+<i class="fas fa-sun theme-icon"></i>
+<label class="theme-switch">
+<input id="theme-checkbox" type="checkbox"/>
+<span class="slider round"></span>
+</label>
+<i class="fas fa-moon theme-icon" style="display: none;"></i>
+</div>
+<header>
+<div class="logo-container"><img alt="Rizqi O Logo" src="logo-rizqi-o-1.png" style="height: 80px; display: block;"/><div style="font-size: 1.1rem; color: #555; margin-top: 10px;">Image Generator</div></div>
+<button class="install-btn" id="installButton" style="display: none;">
+<i class="fas fa-download"></i> Install App
+        </button>
+</header>
+<div class="main-content">
+<div class="control-panel neumorph">
+<h2 class="section-title"><i class="fas fa-sliders-h"></i> Image Settings</h2>
+<div class="form-group">
+<label for="prompt">Image Prompt</label>
+<textarea class="neumorph-input" id="prompt" placeholder="Describe the image you want to generate..."></textarea>
+<button class="clear-prompt-btn neumorph-btn" id="clearPrompt">
+<i class="fas fa-eraser"></i> Clear Prompt
+                </button>
+<div class="translate-container">
+<div class="select-container">
+<select class="neumorph-select" id="language-select">
+<option value="id">Indonesia</option>
+<option selected="" value="en">English</option>
+<option value="ja">Japanese</option>
+<option value="ko">Korean</option>
+<option value="zh">Chinese</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+<option value="de">German</option>
+<option value="ru">Russian</option>
+<option value="ar">Arabic</option>
+</select>
+</div>
+<button class="translate-btn neumorph-btn" id="translateBtn">
+<i class="fas fa-language"></i> Translate
+                    </button>
+</div>
+</div>
+<div class="settings-group">
+<div class="setting-item">
+<label for="aspect-ratio">Aspect Ratio</label>
+<div class="select-container">
+<select class="neumorph-select" id="aspect-ratio">
+<option value="portrait">Portrait (1024×1792)</option>
+<option value="square">Square (1024×1024)</option>
+<option value="landscape">Landscape (1792×1024)</option>
+</select>
+</div>
+</div>
+<div class="setting-item">
+<label for="model">Model</label>
+<div class="select-container">
+<select class="neumorph-select" id="model">
+<option value="premium">Premium</option>
+<option value="turbo">Turbo</option>
+</select>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label>Art Style</label>
+<div class="art-style-grid">
+<div class="art-style-option selected" data-style="realistic">
+<i class="fas fa-eye"></i>
+<span>Realistic</span>
+</div>
+<div class="art-style-option" data-style="fantasy">
+<i class="fas fa-dragon"></i>
+<span>Fantasy</span>
+</div>
+<div class="art-style-option" data-style="anime">
+<i class="fas fa-user-ninja"></i>
+<span>Anime</span>
+</div>
+<div class="art-style-option" data-style="painting">
+<i class="fas fa-palette"></i>
+<span>Painting</span>
+</div>
+<div class="art-style-option" data-style="cyberpunk">
+<i class="fas fa-robot"></i>
+<span>Cyberpunk</span>
+</div>
+<div class="art-style-option" data-style="watercolor">
+<i class="fas fa-water"></i>
+<span>Watercolor</span>
+</div>
+<div class="art-style-option" data-style="photography">
+<i class="fas fa-camera"></i>
+<span>Photography</span>
+</div>
+<div class="art-style-option" data-style="surrealism">
+<i class="fas fa-moon"></i>
+<span>Surrealism</span>
+</div>
+<div class="art-style-option" data-style="fractal">
+<i class="fas fa-project-diagram"></i>
+<span>Fractal</span>
+</div>
+<div class="art-style-option" data-style="macabre">
+<i class="fas fa-skull-crossbones"></i>
+<span>Macabre</span>
+</div>
+</div>
+</div>
+<button class="toggle-advanced neumorph-btn">
+<i class="fas fa-cogs"></i> Advanced Settings
+            </button>
+<div class="advanced-settings" style="display: none;">
+<div class="settings-group">
+<div class="setting-item">
+<label for="seed">Seed (0 for random)</label>
+<input class="neumorph-input" id="seed" max="999999" min="0" type="number" value="0"/>
+</div>
+<div class="setting-item">
+<label for="enhance">Enhance</label>
+<div class="select-container">
+<select class="neumorph-select" id="enhance">
+<option value="super">Super</option>
+<option value="true">Standard</option>
+<option value="false">None</option>
+</select>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="negative-prompt">Negative Prompt</label>
+<textarea class="neumorph-input" id="negative-prompt" placeholder="What you don't want to see in the image..."></textarea>
+</div>
+
+<div class="settings-group">
+<div class="setting-item">
+<label for="style-keywords">Custom Style Keywords (optional)</label>
+<input class="neumorph-input" id="style-keywords" placeholder="e.g., cinematic, soft light" type="text"/>
+</div>
+</div>
+<div class="settings-group">
+<div class="setting-item">
+<label for="steps">Steps</label>
+<input class="neumorph-input" id="steps" max="150" min="1" type="number" value="50"/>
+</div>
+<div class="setting-item">
+<label for="cfg-scale">CFG Scale</label>
+<input class="neumorph-input" id="cfg-scale" max="30" min="1" step="0.5" type="number" value="12"/>
+</div>
+</div>
+<div class="form-group">
+<label><input checked="" id="quality-enhancer" type="checkbox"/> Use Quality Enhancer</label>
+</div>
+</div>
+<div class="action-buttons">
+<button class="neumorph-btn btn-generate primary" id="generate-btn">
+<i class="fas fa-magic"></i> Generate
+                </button>
+<button class="neumorph-btn btn-reset" id="reset-btn">
+<i class="fas fa-undo"></i> Reset
+                </button>
+</div>
+</div>
+<div class="preview-panel neumorph">
+<h2 class="section-title"><i class="fas fa-image"></i> Image Preview</h2>
+<div class="placeholder" id="placeholder">
+<i class="fas fa-cloud"></i>
+<p>Your generated image will appear here</p>
+</div>
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<p>Generating your image...</p>
+<p>This may take a moment</p>
+</div>
+<img alt="Generated image" class="image-preview" id="image-preview"/>
+<button class="neumorph-btn btn-download" id="download-btn">
+<i class="fas fa-download"></i> Download Image
+            </button>
+<button class="neumorph-btn btn-regenerate" id="regenerate-btn">
+<i class="fas fa-sync-alt"></i> Regenerate
+            </button>
+</div>
+</div>
+<div class="notification" id="notification">
+<i class="fas fa-check-circle"></i>
+<span id="notification-message">Image downloaded successfully!</span>
+</div>
+</div>
+<script>
+    // Dark Mode Script
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Warn user if Turbo model is selected
+        const modelSelect = document.getElementById('model');
+        modelSelect.addEventListener('change', function() {
+            if (modelSelect.value === 'turbo') {
+                showNotification('Turbo model is faster but may produce less detailed images for complex styles.', 'warning');
+            }
+        });
+
+        // Theme Switch Functionality
+        const toggleSwitch = document.querySelector('#theme-checkbox');
+        const currentTheme = localStorage.getItem('theme');
+        const sunIcon = document.querySelector('.fa-sun');
+        const moonIcon = document.querySelector('.fa-moon');
+
+        // Set initial theme
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+                updateIcons(true);
+            }
+        }
+
+        // Switch theme function
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                updateIcons(true);
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                updateIcons(false);
+            }
+        }
+
+        // Update icons based on theme
+        function updateIcons(isDark) {
+            if (isDark) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline-block';
+            } else {
+                sunIcon.style.display = 'inline-block';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        // Event listener for switch
+        toggleSwitch.addEventListener('change', switchTheme, false);
+
+        // Toggle advanced settings
+        const toggleAdvanced = document.querySelector('.toggle-advanced');
+        const advancedSettings = document.querySelector('.advanced-settings');
+        
+        toggleAdvanced.addEventListener('click', function() {
+            if (advancedSettings.style.display === 'none') {
+                advancedSettings.style.display = 'block';
+                toggleAdvanced.innerHTML = '<i class="fas fa-cogs"></i> Hide Advanced Settings';
+            } else {
+                advancedSettings.style.display = 'none';
+                toggleAdvanced.innerHTML = '<i class="fas fa-cogs"></i> Advanced Settings';
+            }
+        });
+        
+        // Art style selection
+        const artStyleOptions = document.querySelectorAll('.art-style-option');
+        artStyleOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                artStyleOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Generate image
+        const generateBtn = document.getElementById('generate-btn');
+        const regenerateBtn = document.getElementById('regenerate-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const promptInput = document.getElementById('prompt');
+        const aspectRatio = document.getElementById('aspect-ratio');
+        const model = document.getElementById('model');
+        const seed = document.getElementById('seed');
+        const enhance = document.getElementById('enhance');
+        const negativePrompt = document.getElementById('negative-prompt');
+        const placeholder = document.getElementById('placeholder');
+        const loading = document.getElementById('loading');
+        const imagePreview = document.getElementById('image-preview');
+        const downloadBtn = document.getElementById('download-btn');
+        const notification = document.getElementById('notification');
+        const notificationMessage = document.getElementById('notification-message');
+        const clearPromptBtn = document.getElementById('clearPrompt');
+        
+        // Clear prompt button
+        clearPromptBtn.addEventListener('click', function() {
+            promptInput.value = '';
+            showNotification('Prompt cleared', 'success');
+        });
+        
+        // Translate functionality
+        const translateBtn = document.getElementById('translateBtn');
+        const languageSelect = document.getElementById('language-select');
+        
+        translateBtn.addEventListener('click', async function() {
+            const prompt = promptInput.value.trim();
+            if (!prompt) {
+                showNotification('Please enter a prompt to translate', 'error');
+                return;
+            }
+            
+            const targetLang = languageSelect.value;
+            try {
+                translateBtn.disabled = true;
+                translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Translating...';
+                
+                // Using Google Translate API
+                const translateUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(prompt)}`;
+                const response = await fetch(translateUrl);
+                const data = await response.json();
+                
+                if (data && data[0] && data[0][0] && data[0][0][0]) {
+                    promptInput.value = data[0][0][0];
+                    showNotification('Prompt translated successfully', 'success');
+                } else {
+                    showNotification('Translation failed', 'error');
+                }
+            } catch (error) {
+                console.error('Translation error:', error);
+                showNotification('Error during translation', 'error');
+            } finally {
+                translateBtn.disabled = false;
+                translateBtn.innerHTML = '<i class="fas fa-language"></i> Translate';
+            }
+        });
+        
+        // Store last used prompt for regeneration
+        let lastPrompt = '';
+        
+        // Enhanced Generate image function
+        
+// Preset untuk gaya seni
+const stylePresets = {
+    realistic: "photo-realistic, skin texture, true lighting, depth of field, high resolution, natural tones",
+    fantasy: "ethereal, epic fantasy, glowing runes, mystical landscapes, high detail, enchanted atmosphere",
+    anime: "clean lines, cel shading, anime eyes, dynamic pose, colorful background, high detail",
+    painting: "oil on canvas, painterly brush strokes, impasto technique, expressive texture, museum style",
+    cyberpunk: "futuristic cityscape, neon lights, glowing eyes, chrome finish, tech aesthetics, rain ambiance",
+    watercolor: "soft gradient, pigment spread, canvas texture, light wash, hand-painted feel",
+    photography: "DSLR photo, bokeh, high dynamic range, true-to-life, cinematic composition",
+    surrealism: "dream logic, paradox elements, floating objects, hyper realism, dali inspired",
+    fractal: "recursive geometry, luminous fractals, complex patterns, glowing symmetry, kaleidoscopic effect",
+    macabre: "dark fantasy, gothic horror, decayed beauty, intricate bones, shadow play, expressive gloom"
+};
+
+// Preset untuk model AI
+const modelBoosts = {
+    turbo: "optimized for fast rendering, simplified details, low latency, vivid textures",
+    premium: "hyper detailed, 16k resolution, cinematic lighting, fine textures, ray tracing"
+};
+
+// Negative prompt default
+const defaultNegatives = [
+    "blurry", "lowres", "bad anatomy", "text", "signature", "watermark",
+    "missing fingers", "deformed", "jpeg artifacts", "error"
+];
+
+
+async function generateImage() {
+            let prompt = promptInput.value.trim();
+            if (!prompt) {
+                showNotification('Please enter a prompt to generate an image', 'error');
+                return;
+            }
+
+            // Store the prompt for regeneration
+            lastPrompt = prompt;
+            
+            // Show loading, hide placeholder
+            placeholder.style.display = 'none';
+            loading.style.display = 'flex';
+            imagePreview.style.display = 'none';
+            downloadBtn.style.display = 'none';
+            regenerateBtn.style.display = 'none';
+            
+            // Get selected art style
+            let artStyle = 'realistic';
+            const selectedStyle = document.querySelector('.art-style-option.selected');
+            if (selectedStyle) {
+                artStyle = selectedStyle.dataset.style;
+            }
+            
+            // Get aspect ratio dimensions with updated sizes
+            let width, height;
+            switch (aspectRatio.value) {
+                case 'portrait':
+                    width = 1024;
+                    height = 1792;
+                    break;
+                case 'square':
+                    width = 1024;
+                    height = 1024;
+                    break;
+                case 'landscape':
+                    width = 1792;
+                    height = 1024;
+                    break;
+                case 'custom':
+                    width = 1024; // default custom size
+                    height = 1024;
+                    break;
+                default:
+                    width = 1024;
+                    height = 1024;
+            }
+                
+            
+            // Enhanced quality keywords
+            const baseQualityKeywords = "8k, ultra HD, intricate details, professional photography, sharp focus, 64 megapixels, HDR, masterpiece, highly detailed, artstation trending, ultra sharp, 8k post-processing, studio quality, cinematic lighting, global illumination, ray tracing, volumetric lighting";
+            
+            // Enhanced style-specific prompts
+            
+const styleKeywordsInput = document.getElementById('style-keywords');
+const stepsInput = document.getElementById('steps');
+const cfgScaleInput = document.getElementById('cfg-scale');
+const enhancerToggle = document.getElementById('quality-enhancer');
+
+let fullPrompt = prompt;
+
+if (enhancerToggle.checked) {
+    fullPrompt += ', ' + baseQualityKeywords;
+}
+
+if (model.value === 'turbo') {
+    fullPrompt += ', optimized for fast rendering, 8k ultra HD, high resolution, sharp details, cinematic lighting, well textured, clean image, noise-free, realistic depth, enhanced quality';
+} else if (model.value === 'premium') {
+    fullPrompt += ', hyper detailed, 16k rendering...';
+}
+
+if (styleKeywordsInput.value.trim()) {
+    fullPrompt += ', ' + styleKeywordsInput.value.trim();
+}
+
+
+            // Add extra keywords if Turbo model is selected
+            if (model.value === 'turbo') {
+                fullPrompt += ', optimized for fast rendering, simplified details, low latency enhancement, vivid but less complex textures';
+            }
+
+            if (model.value === 'premium') {
+                fullPrompt += ', hyper detailed, 16k rendering, sharpest edges, studio-grade lighting, ultra fine textures, ultra realism, cinematic color grading';
+            }
+            switch (artStyle) {
+                case 'realistic':
+                    fullPrompt += ', ultra realistic, photorealistic, cinematic lighting, skin pores, fabric texture, detailed reflections';
+                    break;
+                case 'fantasy':
+                    fullPrompt += ', fantasy art, dreamlike, magical, ethereal, otherworldly, intricate designs, detailed costumes';
+                    break;
+                case 'anime':
+                    fullPrompt += ', anime style, studio ghibli, makoto shinkai, vibrant colors, crisp lineart, detailed backgrounds';
+                    break;
+                case 'painting':
+                    fullPrompt += ', oil painting, brush strokes, artistic, impasto technique, visible texture, canvas grain';
+                    break;
+                case 'cyberpunk':
+                    fullPrompt += ', cyberpunk style, neon lights, futuristic, rainy cityscape, reflective surfaces, detailed holograms';
+                    break;
+                case 'watercolor':
+                    fullPrompt += ', watercolor painting, soft edges, artistic, delicate washes, paper texture, pigment dispersion';
+                    break;
+                case 'photography':
+                    fullPrompt += ', professional photography, DSLR, high quality, bokeh, shallow depth of field, film grain, high dynamic range';
+                    break;
+                case 'surrealism':
+                    fullPrompt += ', surrealism art, dreamlike, bizarre, Salvador Dali style, metaphysical, hyper-detailed';
+                    break;
+                case 'macabre':
+                    fullPrompt += ', macabre art, gothic horror, dark surrealism, decaying beauty, anatomical accuracy, dramatic shadows, haunted expressionism, baroque gore, chiaroscuro, twisted elegance';
+                    break;
+                case 'fractal':
+                    fullPrompt += ', fractal art, highly intricate, infinite recursive patterns, glowing edges, complex symmetry, sacred geometry, cosmic forms, surreal light, deep mathematical aesthetics';
+                    break;
+            }
+            
+            // Enhanced negative prompt with default values
+            let fullNegativePrompt = negativePrompt.value.trim() || "blurry, lowres, bad anatomy, bad hands, text, error, missing fingers, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, deformed";
+            
+            try {
+                // Enhanced API parameters with quality boost
+                
+                const encodedPrompt = encodeURIComponent(fullPrompt);
+                const randomSeed = seed.value > 0 ? seed.value : Math.floor(Math.random() * 999999) + 1;
+                const stepsVal = parseInt(stepsInput.value) || 50;
+const cfgVal = parseFloat(cfgScaleInput.value) || 12;
+const qualityParams = `width=${width}&height=${height}&nologo=true&seed=${randomSeed}&steps=${stepsVal}&cfg_scale=${cfgVal}&upscale=true`;
+
+                let apiUrl;
+                if (model.value === 'default') {
+                    apiUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?${qualityParams}`;
+                } else {
+                    apiUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?model=${model.value}&${qualityParams}`;
+                }
+
+                if (fullNegativePrompt) {
+                    apiUrl += `&negative_prompt=${encodeURIComponent(fullNegativePrompt)}`;
+                }
+
+                apiUrl += `&timestamp=${Date.now()}`;
+    
+                
+                // Load image
+                imagePreview.src = apiUrl;
+                
+                // When image loads
+                imagePreview.onload = function() {
+                    loading.style.display = 'none';
+                    imagePreview.style.display = 'block';
+                    downloadBtn.style.display = 'inline-flex';
+                    regenerateBtn.style.display = 'inline-flex';
+                    
+                    // Verify image size
+                    fetch(imagePreview.src)
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const sizeInKB = Math.round(blob.size / 1024);
+                            showNotification(`Image generated successfully! (${sizeInKB}KB)`, 'success');
+                        });
+                };
+                
+                // Handle errors
+                imagePreview.onerror = function() {
+                    loading.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                    showNotification('Error generating image. Please try again with different settings.', 'error');
+                };
+            } catch (error) {
+                console.error('Error:', error);
+                loading.style.display = 'none';
+                placeholder.style.display = 'flex';
+                showNotification('An error occurred. Please try again.', 'error');
+            }
+        }
+        
+        // Generate button click
+        generateBtn.addEventListener('click', generateImage);
+        
+        // Regenerate button click
+        regenerateBtn.addEventListener('click', function() {
+            if (!lastPrompt) {
+                showNotification('No previous prompt to regenerate from', 'error');
+                return;
+            }
+            
+            // Set the seed to 0 to get a different image
+            seed.value = 0;
+            generateImage();
+        });
+        
+        // Reset button click
+        resetBtn.addEventListener('click', function() {
+            promptInput.value = '';
+            negativePrompt.value = '';
+            seed.value = 0;
+            aspectRatio.value = 'square';
+            model.value = 'premium';
+            enhance.value = 'super';
+            
+            // Reset art style to realistic
+            artStyleOptions.forEach(opt => opt.classList.remove('selected'));
+            document.querySelector('.art-style-option[data-style="realistic"]').classList.add('selected');
+            
+            // Reset preview
+            placeholder.style.display = 'flex';
+            loading.style.display = 'none';
+            imagePreview.style.display = 'none';
+            downloadBtn.style.display = 'none';
+            regenerateBtn.style.display = 'none';
+            
+            showNotification('Form has been reset', 'success');
+        });
+        
+        // Download image
+        downloadBtn.addEventListener('click', async function() {
+            if (!imagePreview.src || imagePreview.src.includes('data:')) {
+                showNotification('No image available to download', 'error');
+                return;
+            }
+            
+            try {
+                // Fetch the image as a blob
+                const response = await fetch(imagePreview.src);
+                const blob = await response.blob();
+                
+                // Create a download link
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                
+                // Set the filename
+                const prompt = promptInput.value.trim().substring(0, 20).replace(/[^a-z0-9]/gi, '_').toLowerCase();
+                a.download = `rizqi-o-ai-${prompt || 'image'}-${Date.now()}.jpg`;
+                
+                // Trigger download
+                document.body.appendChild(a);
+                a.click();
+                
+                // Clean up
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                showNotification('Image downloaded successfully!', 'success');
+            } catch (error) {
+                console.error('Download error:', error);
+                showNotification('Failed to download image', 'error');
+            }
+        });
+        
+        // Notification system
+        function showNotification(message, type) {
+            notification.className = `notification ${type}`;
+            notificationMessage.textContent = message;
+            
+            if (type === 'success') {
+                notification.querySelector('i').className = 'fas fa-check-circle';
+            } else if (type === 'error') {
+                notification.querySelector('i').className = 'fas fa-exclamation-circle';
+            } else {
+                notification.querySelector('i').className = 'fas fa-info-circle';
+            }
+            
+            notification.classList.add('show');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Enhanced PWA Installation
+        const installButton = document.getElementById('installButton');
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install button
+            installButton.style.display = 'inline-flex';
+            
+            installButton.addEventListener('click', () => {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted install prompt');
+                        showNotification('App installed successfully!', 'success');
+                    } else {
+                        console.log('User dismissed install prompt');
+                    }
+                    installButton.style.display = 'none';
+                    deferredPrompt = null;
+                });
+            });
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+            installButton.style.display = 'none';
+            deferredPrompt = null;
+        });
+
+        // Check if the app is already installed
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            installButton.style.display = 'none';
+        }
+    });
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(err => {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+</script>
+</body>
+</html>
