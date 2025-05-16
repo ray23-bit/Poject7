@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="#9c66d7" name="theme-color"/>
+  <meta content="Rizqi O AI Image Generator - Create stunning AI-generated images" name="description"/>
+  <title>
+   Rizqi O AI - Image Generator
+  </title>
+  <link href="/manifest.json" rel="manifest"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <!-- Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CFEV3HSD63">
+  </script>
+  <script src="analytics.js">
+  </script>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="container">
+   <!-- Theme Switch -->
+   <div class="theme-switch-wrapper">
+    <i class="fas fa-sun theme-icon">
+    </i>
+    <label class="theme-switch">
+     <input id="theme-checkbox" type="checkbox"/>
+     <span class="slider round">
+     </span>
+    </label>
+    <i class="fas fa-moon theme-icon" style="display: none;">
+    </i>
+   </div>
+   <header>
+    <div class="logo-container">
+     <img alt="Rizqi O Logo" src="logo-rizqi-o-1.png" style="height: 80px; display: block;"/>
+     <div style="font-size: 1.1rem; color: #555; margin-top: 10px;">
+      Image Generator
+     </div>
+    </div>
+    <button class="install-btn" id="installButton" style="display: none;">
+     <i class="fas fa-download">
+     </i>
+     Install App
+    </button>
+   </header>
+   <div class="main-content">
+    <div class="control-panel neumorph">
+     <h2 class="section-title">
+      <i class="fas fa-sliders-h">
+      </i>
+      Image Settings
+     </h2>
+     <div class="form-group">
+      <label for="prompt">
+       Image Prompt
+      </label>
+      <textarea class="neumorph-input" id="prompt" placeholder="Describe the image you want to generate..."></textarea>
+      <button class="clear-prompt-btn neumorph-btn" id="clearPrompt">
+       <i class="fas fa-eraser">
+       </i>
+       Clear Prompt
+      </button>
+      <div class="translate-container">
+       <div class="select-container">
+        <select class="neumorph-select" id="language-select">
+         <option value="id">
+          Indonesia
+         </option>
+         <option selected="" value="en">
+          English
+         </option>
+         <option value="ja">
+          Japanese
+         </option>
+         <option value="ko">
+          Korean
+         </option>
+         <option value="zh">
+          Chinese
+         </option>
+         <option value="es">
+          Spanish
+         </option>
+         <option value="fr">
+          French
+         </option>
+         <option value="de">
+          German
+         </option>
+         <option value="ru">
+          Russian
+         </option>
+         <option value="ar">
+          Arabic
+         </option>
+        </select>
+       </div>
+       <button class="translate-btn neumorph-btn" id="translateBtn">
+        <i class="fas fa-language">
+        </i>
+        Translate
+       </button>
+      </div>
+     </div>
+     <div class="settings-group">
+      <div class="setting-item">
+       <label for="aspect-ratio">
+        Aspect Ratio
+       </label>
+       <div class="select-container">
+        <select class="neumorph-select" id="aspect-ratio">
+         <option value="portrait">
+          Portrait (1024×1792)
+         </option>
+         <option value="square">
+          Square (1024×1024)
+         </option>
+         <option value="landscape">
+          Landscape (1792×1024)
+         </option>
+        </select>
+       </div>
+      </div>
+      <div class="setting-item">
+       <label for="model">
+        Model
+       </label>
+       <div class="select-container">
+        <select class="neumorph-select" id="model">
+         <option value="premium">
+          Premium
+         </option>
+         <option value="turbo">
+          Turbo
+         </option>
+        </select>
+       </div>
+      </div>
+     </div>
+     <div class="form-group">
+      <label>
+       Art Style
+      </label>
+      <div class="art-style-grid">
+       <div class="art-style-option selected" data-style="realistic">
+        <i class="fas fa-eye">
+        </i>
+        <span>
+         Realistic
+        </span>
+       </div>
+       <div class="art-style-option" data-style="fantasy">
+        <i class="fas fa-dragon">
+        </i>
+        <span>
+         Fantasy
+        </span>
+       </div>
+       <div class="art-style-option" data-style="anime">
+        <i class="fas fa-user-ninja">
+        </i>
+        <span>
+         Anime
+        </span>
+       </div>
+       <div class="art-style-option" data-style="painting">
+        <i class="fas fa-palette">
+        </i>
+        <span>
+         Painting
+        </span>
+       </div>
+       <div class="art-style-option" data-style="cyberpunk">
+        <i class="fas fa-robot">
+        </i>
+        <span>
+         Cyberpunk
+        </span>
+       </div>
+       <div class="art-style-option" data-style="watercolor">
+        <i class="fas fa-water">
+        </i>
+        <span>
+         Watercolor
+        </span>
+       </div>
+       <div class="art-style-option" data-style="photography">
+        <i class="fas fa-camera">
+        </i>
+        <span>
+         Photography
+        </span>
+       </div>
+       <div class="art-style-option" data-style="surrealism">
+        <i class="fas fa-moon">
+        </i>
+        <span>
+         Surrealism
+        </span>
+       </div>
+       <div class="art-style-option" data-style="fractal">
+        <i class="fas fa-project-diagram">
+        </i>
+        <span>
+         Fractal
+        </span>
+       </div>
+       <div class="art-style-option" data-style="macabre">
+        <i class="fas fa-skull-crossbones">
+        </i>
+        <span>
+         Macabre
+        </span>
+       </div>
+      </div>
+     </div>
+     <button class="toggle-advanced neumorph-btn">
+      <i class="fas fa-cogs">
+      </i>
+      Advanced Settings
+     </button>
+     <div class="advanced-settings" style="display: none;">
+      <div class="settings-group">
+       <div class="setting-item">
+        <label for="seed">
+         Seed (0 for random)
+        </label>
+        <input class="neumorph-input" id="seed" max="999999" min="0" type="number" value="0"/>
+       </div>
+       <div class="setting-item">
+        <label for="enhance">
+         Enhance
+        </label>
+        <div class="select-container">
+         <select class="neumorph-select" id="enhance">
+          <option value="super">
+           Super
+          </option>
+          <option value="true">
+           Standard
+          </option>
+          <option value="false">
+           None
+          </option>
+         </select>
+        </div>
+       </div>
+      </div>
+      <div class="form-group">
+       <label for="negative-prompt">
+        Negative Prompt
+       </label>
+       <textarea class="neumorph-input" id="negative-prompt" placeholder="What you don't want to see in the image..."></textarea>
+      </div>
+      <div class="settings-group">
+       <div class="setting-item">
+        <label for="style-keywords">
+         Custom Style Keywords (optional)
+        </label>
+        <input class="neumorph-input" id="style-keywords" placeholder="e.g., cinematic, soft light" type="text"/>
+       </div>
+      </div>
+      <div class="settings-group">
+       <div class="setting-item">
+        <label for="steps">
+         Steps
+        </label>
+        <input class="neumorph-input" id="steps" max="150" min="1" type="number" value="50"/>
+       </div>
+       <div class="setting-item">
+        <label for="cfg-scale">
+         CFG Scale
+        </label>
+        <input class="neumorph-input" id="cfg-scale" max="30" min="1" step="0.5" type="number" value="12"/>
+       </div>
+      </div>
+      <div class="form-group">
+       <label>
+        <input checked="" id="quality-enhancer" type="checkbox"/>
+        Use Quality Enhancer
+       </label>
+      </div>
+     </div>
+     <div class="action-buttons">
+      <button class="neumorph-btn btn-generate primary" id="generate-btn">
+       <i class="fas fa-magic">
+       </i>
+       Generate
+      </button>
+      <button class="neumorph-btn btn-reset" id="reset-btn">
+       <i class="fas fa-undo">
+       </i>
+       Reset
+      </button>
+     </div>
+    </div>
+    <div class="preview-panel neumorph">
+     <h2 class="section-title">
+      <i class="fas fa-image">
+      </i>
+      Image Preview
+     </h2>
+     <div class="placeholder" id="placeholder">
+      <i class="fas fa-cloud">
+      </i>
+      <p>
+       Your generated image will appear here
+      </p>
+     </div>
+     <div class="loading" id="loading">
+      <div class="spinner">
+      </div>
+      <p>
+       Generating your image...
+      </p>
+      <p>
+       This may take a moment
+      </p>
+     </div>
+     <img alt="Generated image" class="image-preview" id="image-preview"/>
+     <button class="neumorph-btn btn-download" id="download-btn">
+      <i class="fas fa-download">
+      </i>
+      Download Image
+     </button>
+     <button class="neumorph-btn btn-regenerate" id="regenerate-btn">
+      <i class="fas fa-sync-alt">
+      </i>
+      Regenerate
+     </button>
+    </div>
+   </div>
+   <div class="notification" id="notification">
+    <i class="fas fa-check-circle">
+    </i>
+    <span id="notification-message">
+     Image downloaded successfully!
+    </span>
+   </div>
+  </div>
+  <script src="main.js">
+  </script>
+ </body>
+</html>
