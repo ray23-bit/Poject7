@@ -284,6 +284,7 @@ if (styleKeywordsInput.value.trim()) {
                     fullPrompt += ', fractal art, highly intricate, infinite recursive patterns, glowing edges, complex symmetry, sacred geometry, cosmic forms, surreal light, deep mathematical aesthetics';
                     break;
             }
+                    fullPrompt += ', inspired by Tensor LoRA, inspired by Midjourney, inspired by stabledifusion, inspired by Dalle 3, inspired by LoRA, inspired by Bing Image Creator, inspired by Microsoft Designer';
             
             // Enhanced negative prompt with default values
             let fullNegativePrompt = negativePrompt.value.trim() || "blurry, lowres, bad anatomy, bad hands, text, error, missing fingers, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, deformed";
