@@ -332,6 +332,10 @@ if (styleKeywordsInput.value.trim()) {
             if (model.value === 'premium') {
                 fullPrompt += ', hyper detailed, 16k rendering, sharpest edges, studio-grade lighting, ultra fine textures, ultra realism, cinematic color grading';
             }
+
+            if (stylePresets[artStyle]) {
+                fullPrompt += ', ' + stylePresets[artStyle];
+            }
             switch (artStyle) {
                 case 'realistic':
                     fullPrompt += ', ultra realistic, photorealistic, cinematic lighting, skin pores, fabric texture, detailed reflections';
