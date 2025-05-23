@@ -328,39 +328,11 @@ if (styleKeywordsInput.value.trim()) {
                 fullPrompt += ', hyper detailed, 16k rendering, sharpest edges, studio-grade lighting, ultra fine textures, ultra realism, cinematic color grading';
             }
 
-            switch (artStyle) {
-                case 'realistic':
-                    fullPrompt += ', ultra realistic, photorealistic, cinematic lighting, skin pores, fabric texture, detailed reflections';
-                    break;
-                case 'fantasy':
-                    fullPrompt += ', fantasy art, dreamlike, magical, ethereal, otherworldly, intricate designs, detailed costumes';
-                    break;
-                case 'anime':
-                    fullPrompt += ', anime style, studio ghibli, makoto shinkai, vibrant colors, crisp lineart, detailed backgrounds';
-                    break;
-                case 'painting':
-                    fullPrompt += ', oil painting, brush strokes, artistic, impasto technique, visible texture, canvas grain';
-                    break;
-                case 'cyberpunk':
-                    fullPrompt += ', cyberpunk style, neon lights, futuristic, rainy cityscape, reflective surfaces, detailed holograms';
-                    break;
-                case 'watercolor':
-                    fullPrompt += ', watercolor painting, soft edges, artistic, delicate washes, paper texture, pigment dispersion';
-                    break;
-                case 'photography':
-                    fullPrompt += ', professional photography, DSLR, high quality, bokeh, shallow depth of field, film grain, high dynamic range';
-                    break;
-                case 'surrealism':
-                    fullPrompt += ', surrealism art, dreamlike, bizarre, Salvador Dali style, metaphysical, hyper-detailed';
-                    break;
-                case 'macabre':
-                    fullPrompt += ', macabre art, gothic horror, dark surrealism, decaying beauty, anatomical accuracy, dramatic shadows, haunted expressionism, baroque gore, chiaroscuro, twisted elegance';
-                    break;
-                case 'fractal':
-                    fullPrompt += ', fractal art, highly intricate, infinite recursive patterns, glowing edges, complex symmetry, sacred geometry, cosmic forms, surreal light, deep mathematical aesthetics';
-                    break;
+            if (stylePresets[artStyle]) {
+                fullPrompt += ', ' + stylePresets[artStyle].trim();
             }
-                    fullPrompt += ', inspired by Tensor LoRA, inspired by Midjourney, inspired by stabledifusion, inspired by Dalle 3, inspired by LoRA, inspired by Bing Image Creator, inspired by Microsoft Designer';
+
+            fullPrompt += ', inspired by Tensor LoRA, inspired by Midjourney, inspired by stabledifusion, inspired by Dalle 3, inspired by LoRA, inspired by Bing Image Creator, inspired by Microsoft Designer';
             
             // Enhanced negative prompt with default values
             let fullNegativePrompt = negativePrompt.value.trim() || "blurry, lowres, bad anatomy, bad hands, text, error, missing fingers, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, deformed";
