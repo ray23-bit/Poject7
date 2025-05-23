@@ -225,7 +225,8 @@ const stylePresets = {
     decayed textures, rotting flowers, crumbling statues, blood-red moonlight,
     medieval plague imagery, dramatic shadows, candlelit scenes,
     H.R. Giger inspired biomechanical nightmares, Lovecraftian horror, cursed relics,
-    emotional dread, expressive gloom, tragic beauty, noir symbolism
+    emotional dread, expressive gloom, tragic beauty, noir symbolism, 
+    dark fantasy, gothic horror, decayed beauty, intricate bones, shadow play, expressive gloom
   `
 
 };
