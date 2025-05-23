@@ -151,8 +151,23 @@ const stylePresets = {
     watercolor: "soft gradient, pigment spread, canvas texture, light wash, hand-painted feel",
     photography: "DSLR photo, bokeh, high dynamic range, true-to-life, cinematic composition",
     surrealism: "dream logic, paradox elements, floating objects, hyper realism, dali inspired",
-    fractal: "recursive geometry, luminous fractals, complex patterns, glowing symmetry, kaleidoscopic effect",
-    macabre: "dark fantasy, gothic horror, decayed beauty, intricate bones, shadow play, expressive gloom"
+    fractal: `
+    recursive geometry, glowing symmetry, luminous fractals, kaleidoscopic patterns, 
+    infinite complexity, sacred geometry, mathematical beauty, psychedelic light,
+    fractal tree branching, Mandelbrot set depth, Julia set curves,
+    Sierpinski triangle tessellation, Koch snowflake symmetry,
+    Barnsley fern realism, Dragon curve elegance, high detail,
+    neon glow, cosmic forms, surreal light play, mathematical recursion art
+`,
+    macabre: `
+    macabre art, gothic horror, dark surrealism, decaying beauty, haunted atmosphere,
+    baroque gore, victorian crypts, skeletal figures, shadow-drenched environments,
+    chiaroscuro lighting, grotesque anatomy, dark romanticism, twisted elegance,
+    decayed textures, rotting flowers, crumbling statues, blood-red moonlight,
+    medieval plague imagery, dramatic shadows, candlelit scenes,
+    H.R. Giger inspired biomechanical nightmares, Lovecraftian horror, cursed relics,
+    emotional dread, expressive gloom, tragic beauty, noir symbolism
+`
 };
 
 // Preset untuk model AI
