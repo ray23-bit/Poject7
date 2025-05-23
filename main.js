@@ -226,7 +226,7 @@ const stylePresets = {
     medieval plague imagery, dramatic shadows, candlelit scenes,
     H.R. Giger inspired biomechanical nightmares, Lovecraftian horror, cursed relics,
     emotional dread, expressive gloom, tragic beauty, noir symbolism, gothic horror realism, baroque decay, skeletal motifs, haunted architecture,
-    chiaroscuro lighting, H.R. Giger biomechanical detail, Lovecraftian monsters,
+    chiaroscuro lighting, biomechanical detail, Lovecraftian monsters,
     twisted elegance, Victorian plague themes, cemetery scenery, rotting angels,
     cursed relics, blood-red moonlight, visceral anatomy, emotional dread,
     symbolic horror, grim romanticism, tragic expressionism, old Europe decay,
@@ -333,9 +333,6 @@ if (styleKeywordsInput.value.trim()) {
                 fullPrompt += ', hyper detailed, 16k rendering, sharpest edges, studio-grade lighting, ultra fine textures, ultra realism, cinematic color grading';
             }
 
-            if (stylePresets[artStyle]) {
-                fullPrompt += ', ' + stylePresets[artStyle];
-            }
             switch (artStyle) {
                 case 'realistic':
                     fullPrompt += ', ultra realistic, photorealistic, cinematic lighting, skin pores, fabric texture, detailed reflections';
