@@ -225,9 +225,14 @@ const stylePresets = {
     decayed textures, rotting flowers, crumbling statues, blood-red moonlight,
     medieval plague imagery, dramatic shadows, candlelit scenes,
     H.R. Giger inspired biomechanical nightmares, Lovecraftian horror, cursed relics,
-    emotional dread, expressive gloom, tragic beauty, noir symbolism
-  ',
-  
+    emotional dread, expressive gloom, tragic beauty, noir symbolism, gothic horror realism, baroque decay, skeletal motifs, haunted architecture,
+    chiaroscuro lighting, H.R. Giger biomechanical detail, Lovecraftian monsters,
+    twisted elegance, Victorian plague themes, cemetery scenery, rotting angels,
+    cursed relics, blood-red moonlight, visceral anatomy, emotional dread,
+    symbolic horror, grim romanticism, tragic expressionism, old Europe decay,
+    candlelit catacombs, cinematic horror art, atmospheric gloom, funeral surrealism,
+    expressive shadows, black lace and bones
+  `
 };
 
 // Preset untuk model AI
