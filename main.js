@@ -143,31 +143,17 @@
         
 // Preset untuk gaya seni
 const stylePresets = {
-    realistic: "photo-realistic, skin texture, true lighting, depth of field, high resolution, natural tones",
-    fantasy: "ethereal, epic fantasy, glowing runes, mystical landscapes, high detail, enchanted atmosphere",
-    anime: "clean lines, cel shading, anime eyes, dynamic pose, colorful background, high detail",
-    painting: "oil on canvas, painterly brush strokes, impasto technique, expressive texture, museum style",
-    cyberpunk: "futuristic cityscape, neon lights, glowing eyes, chrome finish, tech aesthetics, rain ambiance",
-    watercolor: "soft gradient, pigment spread, canvas texture, light wash, hand-painted feel",
-    photography: "DSLR photo, bokeh, high dynamic range, true-to-life, cinematic composition",
-    surrealism: "dream logic, paradox elements, floating objects, hyper realism, dali inspired",
-    fractal: `
-    recursive geometry, glowing symmetry, luminous fractals, kaleidoscopic patterns, 
-    infinite complexity, sacred geometry, mathematical beauty, psychedelic light,
-    fractal tree branching, Mandelbrot set depth, Julia set curves,
-    Sierpinski triangle tessellation, Koch snowflake symmetry,
-    Barnsley fern realism, Dragon curve elegance, high detail,
-    neon glow, cosmic forms, surreal light play, mathematical recursion art
-`,
-    macabre: `
-    macabre art, gothic horror, dark surrealism, decaying beauty, haunted atmosphere,
-    baroque gore, victorian crypts, skeletal figures, shadow-drenched environments,
-    chiaroscuro lighting, grotesque anatomy, dark romanticism, twisted elegance,
-    decayed textures, rotting flowers, crumbling statues, blood-red moonlight,
-    medieval plague imagery, dramatic shadows, candlelit scenes,
-    H.R. Giger inspired biomechanical nightmares, Lovecraftian horror, cursed relics,
-    emotional dread, expressive gloom, tragic beauty, noir symbolism
-`
+    realistic: "ultra-realistic, photorealism, cinematic lighting, volumetric light, ambient occlusion, highly detailed skin pores, natural human anatomy, real-world textures, realistic reflections, HDR lighting, Canon EOS 5D, f/1.8 aperture, true-to-life shadows, studio backdrop, lifelike color grading, National Geographic quality",
+    fantasy: "epic fantasy scene, Greg Rutkowski inspired, mystical creatures, ancient ruins, glowing magical effects, enchanted forests, detailed armor with runes, ethereal lighting, fantasy world-building, Dungeons & Dragons setting, dynamic perspective, magical realism",
+    anime: "high-resolution anime illustration, Makoto Shinkai and Ghibli style, vibrant cel shading, expressive eyes, stylized clouds and lighting, sakura petals, anime cityscape, strong rim light, vivid pastel color palette, cinematic angles",
+    painting: "classical oil painting, Baroque influence, expressive brushwork, impasto texture, chiaroscuro lighting, canvas weave, inspired by Rembrandt and Caravaggio, rich color palette, museum-grade composition, renaissance realism",
+    cyberpunk: "cyberpunk aesthetics, Blade Runner inspired, neon cityscape, holographic ads, cybernetic enhancements, dystopian atmosphere, chrome implants, Tokyo night, reflective puddles, Syd Mead influence, cinematic contrast",
+    watercolor: "delicate watercolor painting, handmade paper texture, subtle pigment flow, pastel tones, brushwater bloom effects, minimalist composition, natural light, botanical elements, traditional style, visible wash edges",
+    photography: "ultra-HD professional photography, DSLR camera, shallow depth of field, cinematic bokeh, natural lighting, 50mm lens, HDR tones, studio composition, magazine-quality capture, fine-tuned exposure and clarity",
+    surrealism: "high-concept surrealism, Salvador Dali inspired, dream logic, paradoxical symbolism, melting objects, impossible geometry, metaphysical scenes, subconscious visuals, hyper-detailed landscape, philosophical themes",
+    fractal: "mesmerizing fractal art, infinite recursive geometry, Mandelbrot and Julia sets, glowing symmetrical patterns, sacred geometry, kaleidoscopic structure, cosmic energy visuals, abstract mathematical design, multi-dimensional depth, fractal flame algorithm",
+    macabre: "gothic macabre horror, Zdzisław Beksiński and H.R. Giger inspired, decaying ruins, anatomical horror, chiaroscuro shadows, twisted bones, haunted architecture, psychological dread, visceral textures, symbolic death, dark surrealism"
+};
 };
 
 // Preset untuk model AI
