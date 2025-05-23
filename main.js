@@ -143,17 +143,90 @@
         
 // Preset untuk gaya seni
 const stylePresets = {
-    realistic: "ultra-realistic, photorealism, cinematic lighting, volumetric light, ambient occlusion, highly detailed skin pores, natural human anatomy, real-world textures, realistic reflections, HDR lighting, Canon EOS 5D, f/1.8 aperture, true-to-life shadows, studio backdrop, lifelike color grading, National Geographic quality",
-    fantasy: "epic fantasy scene, Greg Rutkowski inspired, mystical creatures, ancient ruins, glowing magical effects, enchanted forests, detailed armor with runes, ethereal lighting, fantasy world-building, Dungeons & Dragons setting, dynamic perspective, magical realism",
-    anime: "high-resolution anime illustration, Makoto Shinkai and Ghibli style, vibrant cel shading, expressive eyes, stylized clouds and lighting, sakura petals, anime cityscape, strong rim light, vivid pastel color palette, cinematic angles",
-    painting: "classical oil painting, Baroque influence, expressive brushwork, impasto texture, chiaroscuro lighting, canvas weave, inspired by Rembrandt and Caravaggio, rich color palette, museum-grade composition, renaissance realism",
-    cyberpunk: "cyberpunk aesthetics, Blade Runner inspired, neon cityscape, holographic ads, cybernetic enhancements, dystopian atmosphere, chrome implants, Tokyo night, reflective puddles, Syd Mead influence, cinematic contrast",
-    watercolor: "delicate watercolor painting, handmade paper texture, subtle pigment flow, pastel tones, brushwater bloom effects, minimalist composition, natural light, botanical elements, traditional style, visible wash edges",
-    photography: "ultra-HD professional photography, DSLR camera, shallow depth of field, cinematic bokeh, natural lighting, 50mm lens, HDR tones, studio composition, magazine-quality capture, fine-tuned exposure and clarity",
-    surrealism: "high-concept surrealism, Salvador Dali inspired, dream logic, paradoxical symbolism, melting objects, impossible geometry, metaphysical scenes, subconscious visuals, hyper-detailed landscape, philosophical themes",
-    fractal: "mesmerizing fractal art, infinite recursive geometry, Mandelbrot and Julia sets, glowing symmetrical patterns, sacred geometry, kaleidoscopic structure, cosmic energy visuals, abstract mathematical design, multi-dimensional depth, fractal flame algorithm",
-    macabre: "gothic macabre horror, Zdzisław Beksiński and H.R. Giger inspired, decaying ruins, anatomical horror, chiaroscuro shadows, twisted bones, haunted architecture, psychological dread, visceral textures, symbolic death, dark surrealism"
-};
+  realistic: `
+    hyper realistic rendering, photorealistic texture, lifelike skin, cinematic lighting,
+    natural pose, authentic facial expression, depth of field, lens flare, ambient occlusion,
+    high resolution photography, realistic materials, sharp focus, dynamic shadows, soft highlights,
+    natural imperfections, subtle lighting gradation, real-world details, color calibration,
+    DSLR quality, photojournalistic feel, studio lighting, natural perspective
+  `,
+
+  fantasy: `
+    high fantasy art, ethereal lighting, glowing magical aura, floating islands, enchanted atmosphere,
+    elven architecture, mythical beasts, fantasy armor, medieval fantasy setting,
+    fairy dust particles, dreamlike skies, otherworldly glow, Tolkien & Dragon Age inspiration,
+    bioluminescent plants, grand landscapes, spell effects, ornate weapons and robes,
+    celestial beings, dragonflight, ancient ruins, epic sense of scale
+  `,
+
+  anime: `
+    ultra-detailed anime style, clean cel shading, cinematic anime composition, crisp outlines,
+    vibrant palette, manga texture, studio Ghibli and Makoto Shinkai inspiration,
+    glowing sunlight effects, soft rim light, expressive faces, emotion-driven character design,
+    scenic backgrounds, delicate highlights, dynamic camera angles, Japanese anime color grading,
+    anime eyes with high gloss, subtle sparkles, stylish hair flow, pastel and neons,
+    anime motion blur and blur lines
+  `,
+
+  painting: `
+    fine art oil painting, visible brush strokes, Renaissance chiaroscuro, Baroque realism,
+    thick impasto technique, museum-quality detail, layered paint texture, Rembrandt and Vermeer influence,
+    canvas grain, underpainting tones, classical composition rules, expressive color harmonies,
+    dramatic lighting, golden ratio layout, rich oil pigments, palette knife textures,
+    varnished surface glow, art history academic quality
+  `,
+
+  cyberpunk: `
+    dystopian cyberpunk world, neon glow, techwear fashion, urban decay, Blade Runner vibes,
+    flying vehicles, night cityscape, rain reflections, holographic ads, high-tech low-life,
+    circuit patterns, chrome prosthetics, neon ambient occlusion, purple-blue lighting palette,
+    retro-futuristic elements, glitch artifacts, augmented humans, cybernetic enhancements,
+    grunge atmosphere, noir sci-fi tone, electric haze, backlit silhouettes
+  `,
+
+  watercolor: `
+    expressive watercolor wash, soft pigment bleed, brush texture on cotton paper,
+    muted gradients, translucent pigment layers, hand-drawn look, Japanese watercolor style,
+    subtle ink outlines, calming scenery, pastel palette, natural spread effect,
+    visible wet-on-wet technique, uneven saturation, artistic irregularity,
+    color diffusion effects, gentle brush flicks, poetic composition, ink + watercolor blend
+  `,
+
+  photography: `
+    professional studio photography, shallow depth of field, precise lighting ratio,
+    DSLR clarity, bokeh blur, balanced exposure, cinematic DOF, golden hour glow,
+    authentic skin tones, softbox lighting, HDR detail, light bounce & reflectors,
+    photo editorial quality, magazine shot style, real-world texture mapping,
+    high ISO clarity, RAW processing tone, lens perspective distortion
+  `,
+
+  surrealism: `
+    surreal dreamworld, logic-defying geometry, floating structures, distorted anatomy,
+    symbolic visual language, melting or twisted forms, hyperreal dream sequences,
+    Salvador Dali & René Magritte style, subconscious expression, infinite landscapes,
+    paradox perspective, glowing metaphysical objects, multiple suns/moons,
+    impossible architecture, emotion-driven abstraction, uncanny aesthetics,
+    poetic logic, fine surreal detail, Escher patterns, visual riddles
+  `,
+
+  fractal: `
+    fractal geometry art, Mandelbrot set visuals, Julia curve forms, recursive branching,
+    sacred symmetry, kaleidoscopic repetition, deep zoom fractal rendering,
+    neon-electric lines, digital psychedelia, complex math-based visuals,
+    cosmic recursion, spiraling chaos, glowing symmetry patterns, self-replicating detail,
+    infinite pattern depth, spiritual fractal symbolism, luminous center points,
+    mathematical beauty in visual form, Mandelbox surfaces, multi-iteration design
+  `,
+
+  macabre: `
+    gothic horror realism, baroque decay, skeletal motifs, haunted architecture,
+    chiaroscuro lighting, H.R. Giger biomechanical detail, Lovecraftian monsters,
+    twisted elegance, Victorian plague themes, cemetery scenery, rotting angels,
+    cursed relics, blood-red moonlight, visceral anatomy, emotional dread,
+    symbolic horror, grim romanticism, tragic expressionism, old Europe decay,
+    candlelit catacombs, cinematic horror art, atmospheric gloom, funeral surrealism,
+    expressive shadows, black lace and bones
+  `
 };
 
 // Preset untuk model AI
