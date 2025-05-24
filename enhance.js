@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       output.innerHTML = '<span class="loading-spinner"></span>Enhancing...';
 
       try {
-        const response = await fetch('https://text.pollinations.ai/openai', {
+        const response = await fetch('https://text.pollinations.ai/Enhance%20this%20prompt{
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
