@@ -16,6 +16,7 @@
   <script src="analytics.js">
   </script>
   <link href="style.css" rel="stylesheet"/>
+  <link href="enhance-prompt.css" rel="stylesheet" />
  </head>
  <body>
   <div class="container">
@@ -61,6 +62,12 @@
        </i>
        Clear Prompt
       </button>
+      <button class="neumorph-btn" id="enhance-btn">
+      <i class="fas fa-bolt">
+      </i> 
+       Enhance Prompt
+       </button>
+      <div id="enhanced-output" class="result"></div>
       <div class="translate-container">
        <div class="select-container">
         <select class="neumorph-select" id="language-select">
@@ -340,6 +347,7 @@
    </div>
   </div>
   <script src="main.js">
+  <script src="enhance.js">
   </script>
  </body>
 </html>
