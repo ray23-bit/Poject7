@@ -1,0 +1,137 @@
+/* Enhanced Prompt CSS - Complete Version */
+/* Loading Spinner and Animation */
+.loading-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(156, 102, 215, 0.2);
+  border-top: 3px solid #9c66d7;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Container and Layout */
+.enhance-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 15px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Button Styles */
+.enhance-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #9c66d7;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.enhance-btn:hover {
+  background-color: #8a55c5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.enhance-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.enhance-btn i {
+  margin-right: 8px;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 10px 0;
+  color: #555;
+}
+
+/* Result Container */
+.enhance-result {
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.result-container {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+
+/* Prompt Boxes */
+.enhanced-prompt, .original-prompt {
+  padding: 18px;
+  margin-bottom: 20px;
+  border-left: 4px solid #9c66d7;
+  background: #faf9ff;
+  border-radius: 0 8px 8px 0;
+  line-height: 1.6;
+}
+
+.original-prompt {
+  border-left-color: #ddd;
+  background: #f8f9fa;
+}
+
+.enhanced-prompt h4, .original-prompt h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #333;
+  font-size: 18px;
+}
+
+/* Error Handling */
+.error {
+  color: #e74c3c;
+  padding: 15px;
+  background: #fef2f2;
+  border-radius: 8px;
+  border-left: 4px solid #e74c3c;
+  margin: 10px 0;
+}
+
+/* Text Formatting */
+.enhanced-prompt p, .original-prompt p {
+  margin: 0;
+  white-space: pre-wrap;
+  color: #444;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .enhance-container {
+    padding: 10px;
+  }
+  
+  .enhance-btn {
+    padding: 10px 18px;
+    font-size: 15px;
+  }
+  
+  .result-container {
+    padding: 15px;
+  }
+}
