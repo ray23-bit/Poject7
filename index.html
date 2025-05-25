@@ -10,12 +10,14 @@
   </title>
   <link href="/manifest.json" rel="manifest"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="enhance-prompt.css">
   <link href="style.css" rel="stylesheet"/>
   <!-- Google Analytics -->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CFEV3HSD63">
   </script>
   <script src="analytics.js">
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
  </head>
  <body>
   <div class="container">
@@ -61,6 +63,12 @@
        </i>
        Clear Prompt
       </button>
+      <!-- Enhance Prompt UI -->
+          <div class="enhance-container">
+            <button class="enhance-btn neumorph-btn" id="enhance-btn">
+              <i class="fas fa-bolt"></i> Enhance Prompt
+            </button>
+          <div id="enhanced-output" class="enhance-result"></div>
       <div class="translate-container">
        <div class="select-container">
         <select class="neumorph-select" id="language-select">
@@ -339,7 +347,7 @@
     </span>
    </div>
   </div>
-  <script src="main.js">
-  </script>
+  <script src="main.js"></script>
+  <script src="enhance.js"></script>
  </body>
 </html>
