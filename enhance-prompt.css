@@ -1,0 +1,162 @@
+ /* Enhance Prompt CSS - Complete Styling */
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(156, 102, 215, 0.1);
+  border-radius: 8px;
+  margin: 12px 0;
+  color: #555;
+  font-size: 15px;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(156, 102, 215, 0.2);
+  border-top: 3px solid #9c66d7;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 12px;
+}
+
+/* Prompt Containers */
+.enhance-prompt, 
+.original-prompt {
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  background: #f9f9f9;
+  border-left: 4px solid #9c66d7;
+  line-height: 1.6;
+}
+
+.original-prompt {
+  border-left-color: #ddd;
+  background: #f5f5f5;
+}
+
+.enhance-prompt h4, 
+.original-prompt h4 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.enhance-prompt p, 
+.original-prompt p {
+  margin: 0;
+  color: #444;
+  white-space: pre-wrap;
+}
+
+/* Copy Button */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  margin-top: 12px;
+  background: #9c66d7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn i {
+  margin-right: 8px;
+  font-size: 13px;
+}
+
+.copy-btn:hover {
+  background: #8a55c5;
+  transform: translateY(-1px);
+}
+
+/* Error State */
+.error {
+  padding: 12px 16px;
+  margin: 12px 0;
+  background: #fef2f2;
+  border-left: 4px solid #e74c3c;
+  border-radius: 0 8px 8px 0;
+  color: #e74c3c;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.error i {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+/* Notification */
+.notification {
+  padding: 8px 12px;
+  margin-top: 8px;
+  background: rgba(46, 204, 113, 0.1);
+  border-left: 3px solid #2ecc71;
+  border-radius: 4px;
+  color: #27ae60;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.notification i {
+  margin-right: 8px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .loading-state,
+  .enhance-prompt,
+  .original-prompt {
+    padding: 12px;
+  }
+
+  .loading-spinner {
+    width: 18px;
+    height: 18px;
+  }
+} /* Ini penting! Penutup media query */
+
+/* Ini berada di luar media query agar bekerja di semua layar */
+.enhance-btn {
+  padding: 10px 100px;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: #9c66d7;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 4px 4px 8px #c5c5c5, -4px -4px 8px #ffffff;
+  transition: all 0.2s ease;
+}
+
+button.enhance-btn {
+  padding: 10px 100px !important;
+  font-size: 14px !important;
+}
+
+.enhance-btn:hover {
+  background-color: #8a55c5;
+  transform: scale(1.03);
+}
