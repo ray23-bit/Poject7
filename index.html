@@ -388,9 +388,15 @@
       div.setAttribute('data-category', effect.cat);
       div.innerHTML = `<i class="fas ${effect.icon}"></i><span>${effect.name}</span>`;
       div.onclick = () => {
-        document.querySelectorAll('.effect-style-option').forEach(opt => opt.classList.remove('selected'));
-        div.classList.add('selected');
-      };
+      document.querySelectorAll('.effect-style-option').forEach(opt => opt.classList.remove('selected'));
+      div.classList.add('selected');
+
+  // Tutup panel effect-style-container setelah dipilih
+  const effectStylePanel = document.querySelector('.effect-style-container');
+  if (effectStylePanel) {
+    effectStylePanel.style.display = 'none';
+  }
+};
       effectGrid.appendChild(div);
     });
   }
