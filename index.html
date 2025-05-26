@@ -12,7 +12,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="enhance-prompt.css">
   <link href="style.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="effectStyles.css">
   <!-- Google Analytics -->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CFEV3HSD63">
   </script>
@@ -145,20 +144,6 @@
          </option>
         </select>
        </div>
-      </div>
-     </div>
-     <!-- Effect Style Section -->
-    <div class="form-group">
-     <label>Effect Style (100+ Options)</label>
-      <div class="effect-style-container">
-       <div class="effect-scroll-area">
-         <select class="neumorph-select effect-category-select">
-          <option value="all">All Categories</option>
-           </select>
-            <div class="effect-style-grid"></div>
-           </div>
-          </div>
-         </div>
         <div class="form-group">
        <label>
        Art Style
@@ -362,44 +347,6 @@
   </div>
   <script src="main.js"></script>
   <script src="enhance.js"></script>
-  <script src="effectStyles.js"></script>
-<script>
-  const categorySelect = document.querySelector('.effect-category-select');
-  const effectGrid = document.querySelector('.effect-style-grid');
-
-  for (const category in effectStyles) {
-    categorySelect.innerHTML += `<option value="${category}">${category}</option>`;
-  }
-
-  function renderEffects(category) {
-    effectGrid.innerHTML = '';
-    const list = category === 'all'
-      ? Object.entries(effectStyles).flatMap(([cat, items]) => items.map(effect => ({...effect, cat})))
-      : effectStyles[category].map(effect => ({...effect, cat: category}));
-
-    list.forEach(effect => {
-      const div = document.createElement('div');
-      div.className = 'effect-style-option';
-      div.setAttribute('data-keywords', effect.keywords);
-      div.setAttribute('data-category', effect.cat);
-      div.innerHTML = `<i class="fas ${effect.icon}"></i><span>${effect.name}</span>`;
-      div.onclick = () => {
-        document.querySelectorAll('.effect-style-option').forEach(opt => opt.classList.remove('selected'));
-        div.classList.add('selected');
-      };
-      effectGrid.appendChild(div);
-    });
-  }
-
-  categorySelect.addEventListener('change', e => renderEffects(e.target.value));
-  searchInput.addEventListener('input', () => {
-    const term = searchInput.value.toLowerCase();
-    document.querySelectorAll('.effect-style-option').forEach(el => {
-      el.style.display = el.textContent.toLowerCase().includes(term) ? 'flex' : 'none';
-    });
-  });
-
-  renderEffects('all');
   </script>
  </body>
 </html>
