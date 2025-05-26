@@ -553,7 +553,36 @@ const qualityParams = `width=${width}&height=${height}&nologo=true&seed=${random
             installButton.style.display = 'none';
         }
     });
+    // Toggle Effect Style Panel
+const toggleEffectBtn = document.getElementById('toggleEffectStyle');
+const effectStylePanel = document.querySelector('.effect-style-container');
 
+if (toggleEffectBtn && effectStylePanel) {
+    toggleEffectBtn.addEventListener('click', () => {
+        if (effectStylePanel.style.display === 'none' || effectStylePanel.style.display === '') {
+            effectStylePanel.style.display = 'block';
+        } else {
+            effectStylePanel.style.display = 'none';
+        }
+    });
+}
+
+// Event delegation for dynamically created effect-style-option buttons
+const effectStyleGrid = document.querySelector('.effect-style-grid');
+if (effectStyleGrid) {
+    effectStyleGrid.addEventListener('click', function(e) {
+        const clicked = e.target.closest('.effect-style-option');
+        if (clicked) {
+            document.querySelectorAll('.effect-style-option').forEach(opt => opt.classList.remove('selected'));
+            clicked.classList.add('selected');
+
+            // Close the panel
+            if (effectStylePanel) {
+                effectStylePanel.style.display = 'none';
+            }
+        }
+    });
+}
     // Register Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
