@@ -354,12 +354,14 @@ if (styleKeywordsInput.value.trim()) {
 const cfgVal = parseFloat(cfgScaleInput.value) || 12;
 const qualityParams = `width=${width}&height=${height}&nologo=true&seed=${randomSeed}&steps=${stepsVal}&cfg_scale=${cfgVal}&upscale=true`;
 
-                let apiUrl;
-                if (model.value === 'default') {
-                    apiUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?${qualityParams}`;
-                } else {
-                    apiUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?model=${model.value}&${qualityParams}`;
-                }
+                // Di dalam fungsi generateImage, modifikasi pembuatan URL API:
+
+let apiUrl;
+if (model.value === 'default') {
+    apiUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?${qualityParams}&referrer=aArn5-XYZnSia-iE`;
+} else {
+    apiUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?model=${model.value}&${qualityParams}&referrer=aArn5-XYZnSia-iE`;
+}
 
                 if (fullNegativePrompt) {
                     apiUrl += `&negative_prompt=${encodeURIComponent(fullNegativePrompt)}`;
